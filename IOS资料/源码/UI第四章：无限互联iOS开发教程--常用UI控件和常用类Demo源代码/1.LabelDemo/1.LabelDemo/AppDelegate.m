@@ -18,25 +18,49 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    self.window.backgroundColor = [UIColor whiteColor];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(90, 100, 140, 40)];
-    label.backgroundColor = [UIColor redColor];
-    label.text = @"abcdefgkdkdkdkdkdkdkdkd";
-//    label.font = [UIFont systemFontOfSize:14];
-//    label.numberOfLines = 0; // no limit
-    label.lineBreakMode = NSLineBreakByTruncatingHead;
-    label.shadowColor = [UIColor yellowColor];
-    label.shadowOffset = CGSizeMake(-2, 2);
-    label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor blueColor];
-    [label sizeToFit];
-    [self.window addSubview:label];
-    [label release];
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window.backgroundColor =[UIColor whiteColor];
     
     [self.window makeKeyAndVisible];
+    self.window.windowLevel = UIWindowLevelStatusBar;
+    NSLog(@"sdsd");
+    NSLog(@"self.window frame : %@", NSStringFromCGRect(self.window.frame));
+    /*
+    NSLog(@"level %0.2f",self.window.windowLevel);
+    NSLog(@"alert %0.2f",UIWindowLevelAlert);
+    NSLog(@"normal %0.2f",UIWindowLevelNormal);
+    NSLog(@"status %0.2f",UIWindowLevelStatusBar);*/
+    
+    UIButton *startButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    startButton.frame = CGRectMake(40, 40, 100, 100);
+    [startButton setTitle:@"警告" forState:UIControlStateNormal];
+    [startButton addTarget:self action:@selector(alertUser) forControlEvents:UIControlEventTouchUpInside];
+    [self.window addSubview:startButton];
+    
+    
+    
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(90, 100, 140, 40)];
+//    label.backgroundColor = [UIColor redColor];
+//    label.text = @"abcdefgkdkdkdkdkdkdkdkd";
+////    label.font = [UIFont systemFontOfSize:14];
+////    label.numberOfLines = 0; // no limit
+//    label.lineBreakMode = NSLineBreakByTruncatingHead;
+//    label.shadowColor = [UIColor yellowColor];
+//    label.shadowOffset = CGSizeMake(-2, 2);
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.textColor = [UIColor blueColor];
+//    [label sizeToFit];
+//    [self.window addSubview:label];
+//    [label release];
+//    
+    
     return YES;
+}
+-(void)alertUser{
+    NSLog(@"alert");
+    UIAlertView *alertView =[[[UIAlertView alloc] initWithTitle:@"title" message:@"message" delegate:nil cancelButtonTitle:@"sure" otherButtonTitles: nil]autorelease ];
+    [alertView show];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
